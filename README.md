@@ -1,126 +1,96 @@
-import java.util.Scanner;
+# Java Console Menu Program (Scanner Tasks)
 
-public class Main { public static void main(String[] args) { Scanner scanner = new Scanner(System.in);
+A simple Java console application that:
+1) asks for your first and second name,
+2) greets you,
+3) repeatedly asks for a “key pass” (any integer; `0` exits),
+4) lets you choose a **task number** (10–80) to run different mini-calculations.
 
-    System.out.println("Enter your name:");
-    String name = scanner.nextLine();
+---
 
-    System.out.println("Enter your second name:");
-    String secondName = scanner.nextLine();
+## Features / Tasks
 
-    System.out.printf("Hello user %s %s\n", secondName, name);
+After you enter the key pass (anything except `0`), the program asks:
 
-    int n;
-    System.out.println("Input key pass (type 0 to exit):");
+**“Give task number:”**  
+Choose one of the following:
 
-    while ((n = scanner.nextInt()) != 0) {
-        System.out.println("Give task number:");
-        int n1 = scanner.nextInt();
+### Task 10 — Basic Arithmetic (2 numbers)
+**Input:** `a1 a2` (two integers)  
+**Output:** Sum, Difference, Modulo, Product
 
-        if (n1 == 10) {
-            int a1 = scanner.nextInt();
-            int a2 = scanner.nextInt();
+> Note: if `a2 = 0`, modulo (`a1 % a2`) will crash with division-by-zero.
 
-            System.out.println("Sum: " + (a1 + a2));
-            System.out.println("Difference: " + (a1 - a2));
-            System.out.println("Modulo: " + (a1 % a2));
-            System.out.println("Product: " + (a1 * a2));
-        }
+---
 
-        if (n1 == 20) {
-            System.out.println("Give height:");
-            int h = scanner.nextInt();
-            System.out.println("Give side a length:");
-            int a = scanner.nextInt();
-            System.out.println("Give side b length:");
-            int b = scanner.nextInt();
-            System.out.println("Give side c length:");
-            int c = scanner.nextInt();
+### Task 20 — Triangle Type + Area/Perimeter
+**Inputs:**
+- height `h`
+- side `a`
+- side `b`
+- side `c`
 
-            if (a == b && b == c) {
-                System.out.println("Equilateral triangle");
-            } else if (a == b || b == c || a == c) {
-                System.out.println("Isosceles triangle");
-            } else {
-                System.out.println("Scalene triangle");
-            }
+**Output:**
+- Triangle type: Equilateral / Isosceles / Scalene
+- Area = `(h * a) / 2` (integer math)
+- Perimeter = `a + b + c`
 
-            int area = (h * a) / 2;
-            int perimeter = a + b + c;
-            System.out.println("Area: " + area);
-            System.out.println("Perimeter: " + perimeter);
-        }
+> Note: Area uses **integer division**, so decimals are truncated.
 
-        if (n1 == 30) {
-            int s1 = scanner.nextInt();
-            System.out.println("Give side a length:");
-            int s2 = scanner.nextInt();
+---
 
-            if (s1 == s2) {
-                System.out.println("Square");
-            } else {
-                System.out.println("Rectangle");
-            }
+### Task 30 — Rectangle or Square + Area/Perimeter
+**Inputs:** `s1`, `s2` (two side lengths)  
+**Output:**
+- “Square” if `s1 == s2`, else “Rectangle”
+- Area = `s1 * s2`
+- Perimeter = `2 * (s1 + s2)`
 
-            System.out.println("Area: " + (s1 * s2));
-            System.out.println("Perimeter: " + (2 * (s1 + s2)));
-        }
+---
 
-        if (n1 == 40) {
-            int radius = scanner.nextInt();
-            double diameter = 2 * radius;
-            double area = Math.PI * radius * radius;
-            double circumference = 2 * Math.PI * radius;
+### Task 40 — Circle Measurements
+**Input:** `radius` (integer)  
+**Output:**
+- Diameter = `2 * radius`
+- Area = `π * r²`
+- Circumference = `2πr`
 
-            System.out.println("Diameter: " + diameter);
-            System.out.println("Area: " + area);
-            System.out.println("Circumference: " + circumference);
-        }
+---
 
-        if (n1 == 50) {
-            int s1 = scanner.nextInt();
-            System.out.println("Give side s2:");
-            int s2 = scanner.nextInt();
+### Task 50 — Powers + Optional Square Root
+**Inputs:** `s1`, `s2` (two integers)  
+**Does:**
+- Computes `s1^s2` and `s2^s1` (calculated but **not printed** in the current code)
+- Computes `diff = s1 - s2`
+- If `diff > 0`, prints `sqrt(diff)`
 
-            double pow1 = Math.pow(s1, s2);
-            double pow2 = Math.pow(s2, s1);
+---
 
-            int diff = s1 - s2;
-            if (diff > 0) {
-                double sqrt = Math.sqrt(diff);
-                System.out.println("Square root of difference: " + sqrt);
-            }
-        }
+### Task 60 — Multiplication Table (1 to 10)
+**Input:** `number`  
+**Output:** `number * 1` through `number * 10`
 
-        if (n1 == 60) {
-            int number = scanner.nextInt();
-            for (int i = 1; i <= 10; i++) {
-                System.out.printf("%d * %d = %d\n", number, i, number * i);
-            }
-        }
+---
 
-        if (n1 == 70) {
-            int number = scanner.nextInt();
-            if (number > 100) {
-                int lastDigit = number % 10;
-                System.out.println("Last digit: " + lastDigit);
-            }
-        }
+### Task 70 — Last Digit (only if number > 100)
+**Input:** `number`  
+**Output:** last digit (`number % 10`) if `number > 100`
 
-        if (n1 == 80) {
-            System.out.println("Enter a number:");
-            int number = scanner.nextInt();
-            System.out.println("Factors:");
-            for (int i = 1; i <= number; i++) {
-                if (number % i == 0) {
-                    System.out.print(i + " ");
-                }
-            }
-            System.out.println();
-        }
-    }
+---
 
-    System.out.println("Goodbye " + name + " " + secondName);
-    scanner.close();
-}
-}
+### Task 80 — Factors of a Number
+**Input:** `number`  
+**Output:** all integers that divide `number` (from `1` to `number`)
+
+---
+
+## How to Run
+
+1. Make sure you have Java installed.
+2. Put the code inside a class with a `main` method and a `Scanner` like:
+   - `Scanner scanner = new Scanner(System.in);`
+3. Compile and run:
+
+```bash
+javac Main.java
+java Main
